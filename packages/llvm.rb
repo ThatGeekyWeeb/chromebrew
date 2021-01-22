@@ -3,23 +3,10 @@ require 'package'
 class Llvm < Package
   description 'The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The optional packages clang, lld, lldb, polly, compiler-rt, libcxx, libcxxabi and openmp are included.'
   homepage 'http://llvm.org/'
-  version '10.0.0'
+  version '11.0.0'
   compatibility 'all'
-  source_url 'https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/llvm-10.0.0.src.tar.xz'
-  source_sha256 'df83a44b3a9a71029049ec101fb0077ecbbdf5fe41e395215025779099a98fdf'
-
-  binary_url ({
-    aarch64: 'https://dl.bintray.com/chromebrew/chromebrew/llvm-10.0.0-chromeos-armv7l.tar.xz',
-     armv7l: 'https://dl.bintray.com/chromebrew/chromebrew/llvm-10.0.0-chromeos-armv7l.tar.xz',
-       i686: 'https://dl.bintray.com/chromebrew/chromebrew/llvm-10.0.0-chromeos-i686.tar.xz',
-     x86_64: 'https://dl.bintray.com/chromebrew/chromebrew/llvm-10.0.0-chromeos-x86_64.tar.xz',
-  })
-  binary_sha256 ({
-    aarch64: '0498ed55a9d3171c3f523c156822508f1b2a2d506ca87d6961427ae5165f6a34',
-     armv7l: '0498ed55a9d3171c3f523c156822508f1b2a2d506ca87d6961427ae5165f6a34',
-       i686: '8c4173f7de0525948ce60fed8d7fef7a3f1cb4632b650e6623eed6b4a0db7cce',
-     x86_64: 'b4751906ff72b3e4e2fcfbf3380bdc17907e3463c86ba059113369c459c7783f',
-  })
+  source_url 'https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/llvm-11.0.0.src.tar.xz'
+  source_sha256 '913f68c898dfb4a03b397c5e11c6a2f39d0f22ed7665c9cefa87a34423a72469'
 
   depends_on 'ld_default' => :build
   depends_on 'graphviz' => :build # for docs
@@ -35,7 +22,7 @@ class Llvm < Package
     url_clang = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/clang-#{version}.src.tar.xz"
     uri_clang = URI.parse url_clang
     filename_clang = File.basename(uri_clang.path)
-    sha256sum_clang = '885b062b00e903df72631c5f98b9579ed1ed2790f74e5646b4234fa084eacb21'
+    sha256sum_clang = '0f96acace1e8326b39f220ba19e055ba99b0ab21c2475042dbc6a482649c5209'
 
     if File.exist?(filename_clang) && Digest::SHA256.hexdigest( File.read("./#{filename_clang}") ) == sha256sum_clang
       puts "Unpacking clang source code".yellow
@@ -56,7 +43,7 @@ class Llvm < Package
     url_lld = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/lld-#{version}.src.tar.xz"
     uri_lld = URI.parse url_lld
     filename_lld = File.basename(uri_lld.path)
-    sha256sum_lld = 'b9a0d7c576eeef05bc06d6e954938a01c5396cee1d1e985891e0b1cf16e3d708'
+    sha256sum_lld = 'efe7be4a7b7cdc6f3bcf222827c6f837439e6e656d12d6c885d5c8a80ff4fd1c'
 
     if File.exist?(filename_lld) && Digest::SHA256.hexdigest( File.read("./#{filename_lld}") ) == sha256sum_lld
       puts "Unpacking lld source code".yellow
@@ -77,7 +64,7 @@ class Llvm < Package
     url_lldb = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/lldb-#{version}.src.tar.xz"
     uri_lldb = URI.parse url_lldb
     filename_lldb = File.basename(uri_lldb.path)
-    sha256sum_lldb = 'dd1ffcb42ed033f5167089ec4c6ebe84fbca1db4a9eaebf5c614af09d89eb135'
+    sha256sum_lldb = '8570c09f57399e21e0eea0dcd66ae0231d47eafc7a04d6fe5c4951b13c4d2c72'
 
     if File.exist?(filename_lldb) && Digest::SHA256.hexdigest( File.read("./#{filename_lldb}") ) == sha256sum_lldb
       puts "Unpacking lldb source code".yellow
@@ -98,7 +85,7 @@ class Llvm < Package
     url_polly = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/polly-#{version}.src.tar.xz"
     uri_polly = URI.parse url_polly
     filename_polly = File.basename(uri_polly.path)
-    sha256sum_polly = '35fba6ed628896fe529be4c10407f1b1c8a7264d40c76bced212180e701b4d97'
+    sha256sum_polly = 'dcfadb8d11f2ea0743a3f19bab3b43ee1cb855e136bc81c76e2353cd76148440'
 
     if File.exist?(filename_polly) && Digest::SHA256.hexdigest( File.read("./#{filename_polly}") ) == sha256sum_polly
       puts "Unpacking polly source code".yellow
@@ -143,7 +130,7 @@ class Llvm < Package
     url_compiler_rt = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/compiler-rt-#{version}.src.tar.xz"
     uri_compiler_rt = URI.parse url_compiler_rt
     filename_compiler_rt = File.basename(uri_compiler_rt.path)
-    sha256sum_compiler_rt = '6a7da64d3a0a7320577b68b9ca4933bdcab676e898b759850e827333c3282c75'
+    sha256sum_compiler_rt = '374aff82ff573a449f9aabbd330a5d0a441181c535a3599996127378112db234'
 
     if File.exist?(filename_compiler_rt) && Digest::SHA256.hexdigest( File.read("./#{filename_compiler_rt}") ) == sha256sum_compiler_rt
       puts "Unpacking compiler-rt source code".yellow
@@ -164,7 +151,7 @@ class Llvm < Package
     url_libcxx = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/libcxx-#{version}.src.tar.xz"
     uri_libcxx = URI.parse url_libcxx
     filename_libcxx = File.basename(uri_libcxx.path)
-    sha256sum_libcxx = '270f8a3f176f1981b0f6ab8aa556720988872ec2b48ed3b605d0ced8d09156c7'
+    sha256sum_libcxx = '6c1ee6690122f2711a77bc19241834a9219dda5036e1597bfa397f341a9b8b7a'
 
     if File.exist?(filename_libcxx) && Digest::SHA256.hexdigest( File.read("./#{filename_libcxx}") ) == sha256sum_libcxx
       puts "Unpacking libcxx source code".yellow
@@ -185,7 +172,7 @@ class Llvm < Package
     url_libcxxabi = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/libcxxabi-#{version}.src.tar.xz"
     uri_libcxxabi = URI.parse url_libcxxabi
     filename_libcxxabi = File.basename(uri_libcxxabi.path)
-    sha256sum_libcxxabi = 'e71bac75a88c9dde455ad3f2a2b449bf745eafd41d2d8432253b2964e0ca14e1'
+    sha256sum_libcxxabi = '58697d4427b7a854ec7529337477eb4fba16407222390ad81a40d125673e4c15'
 
     if File.exist?(filename_libcxxabi) && Digest::SHA256.hexdigest( File.read("./#{filename_libcxxabi}") ) == sha256sum_libcxxabi
       puts "Unpacking libcxxabi source code".yellow
@@ -206,7 +193,7 @@ class Llvm < Package
     url_openmp = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/openmp-#{version}.src.tar.xz"
     uri_openmp = URI.parse url_openmp
     filename_openmp = File.basename(uri_openmp.path)
-    sha256sum_openmp = '3b9ff29a45d0509a1e9667a0feb43538ef402ea8cfc7df3758a01f20df08adfa'
+    sha256sum_openmp = '2d704df8ca67b77d6d94ebf79621b0f773d5648963dd19e0f78efef4404b684c'
 
     if File.exist?(filename_openmp) && Digest::SHA256.hexdigest( File.read("./#{filename_openmp}") ) == sha256sum_openmp
       puts "Unpacking openmp source code".yellow
@@ -227,7 +214,7 @@ class Llvm < Package
     url_libunwind = "https://github.com/llvm/llvm-project/releases/download/llvmorg-#{version}/libunwind-#{version}.src.tar.xz"
     uri_libunwind = URI.parse url_libunwind
     filename_libunwind = File.basename(uri_libunwind.path)
-    sha256sum_libunwind = '09dc5ecc4714809ecf62908ae8fe8635ab476880455287036a2730966833c626'
+    sha256sum_libunwind = '8455011c33b14abfe57b2fd9803fb610316b16d4c9818bec552287e2ba68922f'
 
     if File.exist?(filename_libunwind) && Digest::SHA256.hexdigest( File.read("./#{filename_libunwind}") ) == sha256sum_libunwind
       puts "Unpacking libunwind source code".yellow
